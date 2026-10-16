@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HazonTech Reparaciones | Reparación de iPhone y MacBook | Diagnóstico claro y cotización antes de reparar</title>
+<meta name="description" content="Reparación de iPhone y MacBook: pantallas, baterías, puertos de carga, teclados, daño por líquido y más. Diagnóstico claro y cotización antes de reparar.">
+<meta name="theme-color" content="#14212B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F1F4F5;
+  --surface:#FFFFFF;
+  --ink:#14212B;
+  --muted:#52626E;
+  --line:#D5DDE1;
+  --accent:#0B6E69;
+  --accent-ink:#FFFFFF;
+  --accent-soft:#DCEEEC;
+  --signal:#B7791F;
+  --radius:14px;
+  --font-head:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --font-body:"Instrument Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0F1820;
+    --surface:#16232D;
+    --ink:#E8EEF1;
+    --muted:#9DB0BB;
+    --line:#2A3A46;
+    --accent:#3FC1B8;
+    --accent-ink:#06211F;
+    --accent-soft:#143634;
+    --signal:#E3B25B;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--font-body);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--font-head);line-height:1.15;margin:0;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+/* Encabezado */
+header.top{border-bottom:1px solid var(--line);background:var(--surface)}
+.top-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--font-head);font-weight:700;font-size:1.15rem}
+.brand svg{flex:none}
+.top-cta{
+  text-decoration:none;font-weight:600;font-size:.95rem;
+  padding:9px 16px;border-radius:999px;border:1.5px solid var(--ink);
+}
+.top-cta:hover{background:var(--ink);color:var(--bg)}
+
+/* Hero */
+.hero{padding:48px 0 28px;display:grid;gap:36px;grid-template-columns:1.15fr .85fr;align-items:center}
+.hero h1{font-size:clamp(2.1rem,5.2vw,3.5rem);font-weight:700}
+.hero p.lead{margin-top:18px;color:var(--muted);font-size:1.12rem;max-width:52ch}
+.hero-actions{margin-top:26px;display:flex;flex-wrap:wrap;gap:12px}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font:600 1rem var(--font-body);text-decoration:none;cursor:pointer;
+  padding:13px 22px;border-radius:999px;border:1.5px solid transparent;
+}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--ink)}
+
+/* Ficha de servicio (elemento central del hero) */
+.ticket{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 22px 8px;position:relative;
+}
+.ticket::before,.ticket::after{
+  content:"";position:absolute;top:56px;width:14px;height:14px;border-radius:50%;
+  background:var(--bg);border:1px solid var(--line);
+}
+.ticket::before{left:-8px;clip-path:inset(0 0 0 50%)}
+.ticket::after{right:-8px;clip-path:inset(0 50% 0 0)}
+.ticket h2{font-size:1.05rem;padding-bottom:14px;border-bottom:1px dashed var(--line);margin-bottom:6px}
+.ticket ol{list-style:none;margin:0;padding:0}
+.ticket li{display:grid;grid-template-columns:30px 1fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.ticket li:last-child{border-bottom:0}
+.ticket .n{
+  width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent);
+  display:grid;place-items:center;font-weight:600;font-size:.85rem;margin-top:2px;
+}
+.ticket strong{display:block;font-weight:600;line-height:1.3}
+.ticket span.d{color:var(--muted);font-size:.93rem;line-height:1.45}
+
+/* Pestañas */
+.tabs-bar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-top:20px}
+[role=tablist]{display:flex;gap:6px;padding:10px 0;overflow-x:auto}
+[role=tab]{
+  flex:1 1 0;min-width:max-content;text-align:center;
+  font:600 1rem var(--font-body);color:var(--muted);
+  background:transparent;border:1.5px solid transparent;border-radius:999px;
+  padding:11px 20px;cursor:pointer;
+}
+[role=tab]:hover{color:var(--ink)}
+[role=tab][aria-selected=true]{background:var(--ink);color:var(--bg)}
+
+main{padding:36px 0 64px}
+[role=tabpanel][hidden]{display:none}
+.panel-head{max-width:62ch;margin-bottom:28px}
+.panel-head h2{font-size:clamp(1.7rem,3.6vw,2.4rem)}
+.panel-head p{margin-top:12px;color:var(--muted)}
+
+/* Lista de servicios */
+.services{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.services li{
+  display:grid;grid-template-columns:minmax(180px,.8fr) 1.6fr;gap:8px 28px;
+  padding:18px 24px;border-bottom:1px solid var(--line);
+}
+.services li:last-child{border-bottom:0}
+.services h3{font-size:1.1rem}
+.services p{color:var(--muted)}
+
+.note{
+  margin-top:22px;padding:16px 20px;border-radius:var(--radius);
+  background:var(--accent-soft);color:var(--ink);font-size:.98rem;
+  border-left:4px solid var(--accent);
+}
+.panel-cta{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.panel-cta p{color:var(--muted)}
+
+/* Contacto */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.box h3{font-size:1.25rem;margin-bottom:14px}
+.exp{
+  display:flex;align-items:baseline;gap:14px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px dashed var(--line);
+}
+.exp b{font-family:var(--font-head);font-size:3.2rem;line-height:1;color:var(--accent)}
+.exp span{color:var(--muted);line-height:1.35}
+.values{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.values li{display:grid;grid-template-columns:22px 1fr;gap:10px}
+.values svg{margin-top:4px;color:var(--accent)}
+.values strong{font-weight:600}
+.values span{display:block;color:var(--muted);font-size:.95rem}
+
+.channels{display:grid;gap:12px;margin-bottom:22px}
+.channel{
+  display:flex;flex-direction:column;text-decoration:none;
+  padding:12px 16px;border:1px solid var(--line);border-radius:10px;
+}
+.channel[hidden]{display:none}
+.channel:hover{border-color:var(--accent)}
+.channel small{color:var(--muted);font-size:.85rem}
+.channel b{font-weight:600}
+
+form{display:grid;gap:14px}
+label{font-weight:600;font-size:.95rem;display:grid;gap:6px}
+select,textarea,input{
+  font:400 1rem var(--font-body);color:var(--ink);background:var(--bg);
+  border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;width:100%;
+}
+textarea{min-height:96px;resize:vertical}
+.hint{font-size:.88rem;color:var(--muted)}
+
+footer{border-top:1px solid var(--line);background:var(--surface);padding:26px 0;color:var(--muted);font-size:.93rem}
+.foot-in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+
+@media (max-width:860px){
+  .hero{grid-template-columns:1fr;padding-top:32px}
+  .contact-grid{grid-template-columns:1fr}
+  .services li{grid-template-columns:1fr;gap:4px;padding:16px 18px}
+  .ticket::before,.ticket::after{display:none}
+}
+@media (max-width:520px){
+  body{font-size:16px}
+  .top-cta{display:none}
+  [role=tab]{padding:11px 14px;font-size:.95rem}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#iphone" data-go="iphone" aria-label="Inicio">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <rect x="1" y="1" width="26" height="26" rx="8" fill="var(--ink)"/>
+        <path d="M17.5 7.5a4.5 4.5 0 0 0-5.3 5.9L7.9 17.7a1.6 1.6 0 0 0 2.3 2.3l4.3-4.3a4.5 4.5 0 0 0 5.9-5.3l-2.4 2.4-2-.5-.5-2z" fill="var(--bg)"/>
+      </svg>
+      <span data-fill="brand">HazonTech Reparaciones</span>
+    </a>
+    <a class="top-cta" href="#contacto" data-go="contacto">Pedir cotización</a>
+  </div>
+</header>
+
+<section class="wrap hero" aria-labelledby="h1">
+  <div>
+    <h1 id="h1">Tu iPhone o MacBook, funcionando otra vez.</h1>
+    <p class="lead">Reparo iPhone y MacBook de todo tipo. Primero reviso el equipo, te explico qué tiene y cuánto cuesta, y solo reparo si tú lo apruebas.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#contacto" data-go="contacto">Cotizar mi equipo</a>
+      <a class="btn btn-ghost" data-wa href="#">Escribir por WhatsApp</a>
+    </div>
+  </div>
+  <aside class="ticket" aria-label="Cómo trabajo">
+    <h2>Así funciona una reparación</h2>
+    <ol>
+      <li><span class="n">1</span><div><strong>Diagnóstico</strong><span class="d">Reviso el equipo y encuentro la falla real.</span></div></li>
+      <li><span class="n">2</span><div><strong>Cotización</strong><span class="d">Te explico el problema y el costo antes de tocar nada.</span></div></li>
+      <li><span class="n">3</span><div><strong>Reparación</strong><span class="d">Trabajo solo con tu aprobación.</span></div></li>
+      <li><span class="n">4</span><div><strong>Entrega y prueba</strong><span class="d">Probamos juntos que todo funcione.</span></div></li>
+    </ol>
+  </aside>
+</section>
+
+<div class="tabs-bar">
+  <div class="wrap">
+    <div role="tablist" aria-label="Secciones">
+      <button role="tab" id="tab-iphone" aria-controls="panel-iphone" aria-selected="true">Reparación de iPhone</button>
+      <button role="tab" id="tab-macbook" aria-controls="panel-macbook" aria-selected="false" tabindex="-1">Reparación de MacBook</button>
+      <button role="tab" id="tab-contacto" aria-controls="panel-contacto" aria-selected="false" tabindex="-1">Contacto y experiencia</button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- iPHONE -->
+  <section role="tabpanel" id="panel-iphone" aria-labelledby="tab-iphone">
+    <div class="panel-head">
+      <h2>Reparación de iPhone</h2>
+      <p>Atiendo fallas de hardware y de software en iPhone. Si no estás seguro de qué tiene tu equipo, tráelo y lo diagnostico.</p>
+    </div>
+    <ul class="services">
+      <li><h3>Pantalla</h3><p>Cambio de pantalla rota, con manchas, líneas, sin imagen o con el táctil fallando.</p></li>
+      <li><h3>Batería</h3><p>Cambio cuando el teléfono dura poco, se apaga solo o la batería está inflada.</p></li>
+      <li><h3>Puerto de carga</h3><p>Limpieza o cambio cuando no carga, carga intermitente o el cable no queda firme.</p></li>
+      <li><h3>Cámaras</h3><p>Cámara trasera o frontal con imagen borrosa, negra o con el vidrio roto.</p></li>
+      <li><h3>Audio</h3><p>Bocina, auricular y micrófono: no se escucha, no te escuchan o suena distorsionado.</p></li>
+      <li><h3>Botones y vidrio trasero</h3><p>Botones de encendido y volumen que no responden, y vidrio trasero quebrado.</p></li>
+      <li><h3>Daño por líquido</h3><p>Revisión y limpieza de equipos mojados. Entre más pronto lo traigas, mejores son las posibilidades.</p></li>
+      <li><h3>Software</h3><p>Equipo trabado, no enciende por software, actualizaciones fallidas y restauración.</p></li>
+    </ul>
+    <p class="note">Cada modelo de iPhone es distinto. Dime tu modelo y la falla, y te doy una cotización antes de reparar.</p>
+    <div class="panel-cta">
+      <button class="btn btn-primary" data-device="iPhone">Cotizar mi iPhone</button>
+      <p>Sin compromiso: el diagnóstico y la cotización van primero.</p>
+    </div>
+  </section>
+
+  <!-- MACBOOK -->
+  <section role="tabpanel" id="panel-macbook" aria-labelledby="tab-macbook" hidden>
+    <div class="panel-head">
+      <h2>Reparación de MacBook</h2>
+      <p>Reparo MacBook Air y MacBook Pro. Cuido tu información: si el equipo lo permite, hablamos primero de respaldar tus archivos.</p>
+    </div>
+    <ul class="services">
+      <li><h3>Pantalla</h3><p>Pantalla rota, con manchas, líneas, parpadeos o sin imagen.</p></li>
+      <li><h3>Batería</h3><p>Cambio cuando dura poco, se hincha o el equipo se apaga de repente.</p></li>
+      <li><h3>Teclado y trackpad</h3><p>Teclas que no responden, se repiten o están duras, y trackpad que no hace clic.</p></li>
+      <li><h3>No enciende o no carga</h3><p>Diagnóstico de cargador, puerto de carga y placa para encontrar por qué no da señal de vida.</p></li>
+      <li><h3>Daño por líquido</h3><p>Limpieza y revisión de equipos mojados. Apágalo y no lo cargues hasta traerlo.</p></li>
+      <li><h3>Sobrecalentamiento y ruido</h3><p>Limpieza interna, ventiladores y cambio de pasta térmica.</p></li>
+      <li><h3>Almacenamiento y memoria</h3><p>Mejora de almacenamiento y memoria en los modelos que lo permiten.</p></li>
+      <li><h3>Software macOS</h3><p>Equipo lento, instalación o restauración de macOS, y errores de arranque.</p></li>
+    </ul>
+    <p class="note">En algunos modelos la memoria y el almacenamiento vienen soldados y no se pueden ampliar. Te lo confirmo según tu equipo.</p>
+    <div class="panel-cta">
+      <button class="btn btn-primary" data-device="MacBook">Cotizar mi MacBook</button>
+      <p>Cuéntame el modelo y el año si lo sabes.</p>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section role="tabpanel" id="panel-contacto" aria-labelledby="tab-contacto" hidden>
+    <div class="panel-head">
+      <h2>Contacto y experiencia</h2>
+      <p>Soy <span data-fill="owner">Hazon Samuel</span>. Escríbeme con tu modelo y lo que le pasa al equipo, y te respondo con el siguiente paso.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="box">
+        <div class="exp">
+          <b>1 año</b>
+          <span>de experiencia reparando<br>iPhone y MacBook</span>
+        </div>
+        <h3>Cómo trabajo</h3>
+        <ul class="values">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><strong>Diagnóstico honesto</strong><span>Te digo qué tiene el equipo, aunque la solución sea sencilla.</span></div>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><strong>Cotización antes de reparar</strong><span>No trabajo en tu equipo sin que apruebes el precio.</span></div>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><strong>Cuidado con tu información</strong><span>Tus fotos, archivos y cuentas son tuyos. Los trato con respeto.</span></div>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div><strong>Probamos juntos al entregar</strong><span>Revisamos que todo funcione antes de que te lo lleves.</span></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <h3>Escríbeme</h3>
+        <div class="channels">
+          <a class="channel" data-wa href="#"><small>WhatsApp</small><b data-fill="phone">+000 0000 0000</b></a>
+          <a class="channel" id="mail-channel" data-mail href="#" hidden><small>Correo</small><b data-fill="email">tucorreo@ejemplo.com</b></a>
+          <div class="channel"><small>Ubicación y horario</small><b><span data-fill="place">Tu ciudad</span> · <span data-fill="hours">Lun a Sáb, 9:00 a 18:00</span></b></div>
+        </div>
+
+        <form id="quote" novalidate>
+          <label>Equipo
+            <select id="f-device">
+              <option>iPhone</option>
+              <option>MacBook</option>
+            </select>
+          </label>
+          <label>Modelo (opcional)
+            <input id="f-model" type="text" placeholder="Ej.: iPhone 13, MacBook Air M1">
+          </label>
+          <label>¿Qué le pasa?
+            <textarea id="f-issue" placeholder="Ej.: se rompió la pantalla, no carga, se mojó…"></textarea>
+          </label>
+          <button class="btn btn-primary" type="submit">Enviar por WhatsApp</button>
+          <p class="hint">Se abrirá WhatsApp con tu mensaje listo para enviar.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>© <span id="year"></span> <span data-fill="brand">HazonTech Reparaciones</span></span>
+    <span>Servicio independiente. iPhone y MacBook son marcas de Apple Inc.</span>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   EDITA SOLO ESTO: tus datos de contacto.
+   whatsapp: número con código de país, solo dígitos (sin + ni espacios).
+   ============================================================ */
+const CONFIG = {
+  brand:    "HazonTech Reparaciones",
+  owner:    "Hazon Samuel",
+  whatsapp: "50242666408",
+  phone:    "+502 4266-6408",
+  email:    "",                      // opcional: si lo dejas vacío, no se muestra
+  place:    "Guatemala",
+  hours:    "Lun a Sáb, 9:00 a 18:00"
+};
+
+(function () {
+  /* Rellenar datos */
+  document.querySelectorAll("[data-fill]").forEach(function (el) {
+    el.textContent = CONFIG[el.dataset.fill];
+  });
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  var wa = "https://wa.me/" + CONFIG.whatsapp;
+  document.querySelectorAll("[data-wa]").forEach(function (a) {
+    a.href = wa + "?text=" + encodeURIComponent(
+      "Hola " + CONFIG.owner.split(" ")[0] + ", vi la página de " + CONFIG.brand +
+      " y quiero cotizar la reparación de mi equipo. ¿Me puedes ayudar?"
+    );
+    a.target = "_blank"; a.rel = "noopener";
+  });
+  document.querySelectorAll("[data-mail]").forEach(function (a) {
+    if (CONFIG.email) { a.href = "mailto:" + CONFIG.email; a.hidden = false; }
+  });
+
+  /* Pestañas */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll("[role=tab]"));
+  var panels = {
+    iphone: document.getElementById("panel-iphone"),
+    macbook: document.getElementById("panel-macbook"),
+    contacto: document.getElementById("panel-contacto")
+  };
+  var order = ["iphone", "macbook", "contacto"];
+
+  function show(name, focus, scroll) {
+    if (!panels[name]) name = "iphone";
+    order.forEach(function (key) {
+      var on = key === name;
+      var tab = document.getElementById("tab-" + key);
+      tab.setAttribute("aria-selected", on ? "true" : "false");
+      tab.tabIndex = on ? 0 : -1;
+      panels[key].hidden = !on;
+      if (on && focus) tab.focus();
+    });
+    if (location.hash !== "#" + name) history.replaceState(null, "", "#" + name);
+    if (scroll) {
+      var bar = document.querySelector(".tabs-bar");
+      window.scrollTo({ top: bar.offsetTop - 0, behavior: "smooth" });
+    }
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener("click", function () { show(order[i], false, false); });
+    tab.addEventListener("keydown", function (e) {
+      var next = null;
+      if (e.key === "ArrowRight") next = (i + 1) % tabs.length;
+      if (e.key === "ArrowLeft") next = (i - 1 + tabs.length) % tabs.length;
+      if (e.key === "Home") next = 0;
+      if (e.key === "End") next = tabs.length - 1;
+      if (next !== null) { e.preventDefault(); show(order[next], true, false); }
+    });
+  });
+
+  document.querySelectorAll("[data-go]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      show(a.dataset.go, false, true);
+    });
+  });
+
+  /* Botones "Cotizar": abren contacto con el equipo elegido */
+  document.querySelectorAll("[data-device]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      document.getElementById("f-device").value = b.dataset.device;
+      show("contacto", false, true);
+      setTimeout(function () { document.getElementById("f-model").focus({ preventScroll: true }); }, 300);
+    });
+  });
+
+  /* Formulario -> WhatsApp */
+  document.getElementById("quote").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var device = document.getElementById("f-device").value;
+    var model = document.getElementById("f-model").value.trim();
+    var issue = document.getElementById("f-issue").value.trim();
+    var msg = "Hola " + CONFIG.owner.split(" ")[0] + ", quiero cotizar una reparación.\n\n" +
+              "Equipo: " + device +
+              (model ? "\nModelo: " + model : "") +
+              (issue ? "\nProblema: " + issue : "") +
+              "\n\n¿Me puedes dar el diagnóstico y el precio? Gracias.";
+    window.open(wa + "?text=" + encodeURIComponent(msg), "_blank", "noopener");
+  });
+
+  /* Estado inicial según el enlace (#iphone, #macbook, #contacto) */
+  show(location.hash.replace("#", "") || "iphone", false, false);
+  window.addEventListener("hashchange", function () {
+    show(location.hash.replace("#", ""), false, false);
+  });
+})();
+</script>
+</body>
+</html>
